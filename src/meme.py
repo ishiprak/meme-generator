@@ -3,7 +3,7 @@ import random
 import argparse
 
 # @TODO Import your Ingestor and MemeEngine classes
-from QuoteEngine import Ingestor
+from QuoteEngine import Ingestor, QuoteModel
 from MemeEngine import MemeEngine
 
 
@@ -20,7 +20,7 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path[0]
+        img = path
 
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',

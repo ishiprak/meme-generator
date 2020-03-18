@@ -4,7 +4,7 @@ import requests
 from flask import Flask, render_template, abort, request
 
 # @TODO Import your Ingestor and MemeEngine classes
-from QuoteEngine import Ingestor
+from QuoteEngine import Ingestor, QuoteModel
 from MemeEngine import MemeEngine
 
 
@@ -74,14 +74,15 @@ def meme_post():
     # 3. Remove the temporary saved image.
 
     path = None
-    image_url = request.args.get("image_url")
-    body = request.args.get("body")
-    author = request.args.get("author")
+    image_url = request.form["image_url"]
+    body = request.form["body"]
+    author = request.form["author"]
     r = requests.get(image_url, allow_redirects=True)
     img = f'./tmp/{random.randint(0, 100000)}.png'
-    f = open(img, 'wb')
-    f.write(r.content)
+    temp = open(img, 'wb')
+    temp.write(r.content)
     path = meme.make_meme(img, body, author)
+    temp.close()
     os.remove(img)
     return render_template('meme.html', path=path)
 
