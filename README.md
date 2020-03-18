@@ -1,5 +1,5 @@
 # Meme-Generator
-Meme generator is a CLI and Web-application based Meme-generator program. 
+Meme generator is a CLI and Web-application based Meme-generator program.\n
 This program uses different Python libraries and the flask Web-framework to encapsulate the functionalities of a CLI-based tool as well as a web-based service. Meme generator can generate random memes on each request and can also create customized memes as per user inputs, by taking an input Image file and Quote/Caption texts for the custom made memes. As mentioned above, this software can be used as both a CLI based tool, as well as a web-application.
 
 ## Setup and Running of the program-
