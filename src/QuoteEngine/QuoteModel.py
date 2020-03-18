@@ -1,10 +1,9 @@
 class QuoteModel:
 
 
-    def __init__(self, text):
-        quote = text.strip().split("-")
-        self.body = quote[0].strip()
-        self.author = quote[1].strip()
+    def __init__(self, body, author):
+        self.body = body.strip()
+        self.author = author.strip()
 
 
     def __repr__(self):

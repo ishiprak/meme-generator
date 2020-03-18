@@ -4,8 +4,8 @@ import requests
 from flask import Flask, render_template, abort, request
 
 # @TODO Import your Ingestor and MemeEngine classes
-from .QuoteEngine import Ingester
-from .MemeEngine import MemeEngine
+from QuoteEngine import Ingestor
+from MemeEngine import MemeEngine
 
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def setup():
     # TODO: Use the pythons standard library os class to find all
     # images within the images images_path directory
     imgs = []
-    for root, dirs, files in os.walk(images):
+    for root, dirs, files in os.walk(images_path):
         imgs = [os.path.join(root, name) for name in files]
 
     return quotes, imgs
@@ -79,7 +79,8 @@ def meme_post():
     author = request.args.get("author")
     r = requests.get(image_url, allow_redirects=True)
     img = f'./tmp/{random.randint(0, 100000)}.png'
-    open(img, 'wb').write(r.content))
+    f = open(img, 'wb')
+    f.write(r.content)
     path = meme.make_meme(img, body, author)
     os.remove(img)
     return render_template('meme.html', path=path)

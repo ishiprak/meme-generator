@@ -5,7 +5,7 @@ import random
 class MemeEngine:
 
     def __init__(self, output_dir):
-        self.out_path=output_dir
+        self.out_path = output_dir
 
 
     def make_meme(self, img_path, text, author, width=500) -> str:
@@ -21,7 +21,7 @@ class MemeEngine:
         """
 
         img = Image.open(img_path)
-        quote = f'{text} - {author}'
+        quote = f'{text}\n   - {author}'
 
         if width is not None:
             ratio = width/float(img.size[0])
@@ -30,15 +30,16 @@ class MemeEngine:
 
         if quote is not None:
             draw = ImageDraw.Draw(img)
-            font_list = ["../_data/fonts/BalooChettan2-Bold.ttf", "../_data/fonts/BalooChettan2-ExtraBold.ttf", 
-                         "../_data/fonts/BalooChettan2-SemiBold.ttf", "../_data/fonts/BalooChettan2-Medium.ttf", 
-                         "../_data/fonts/BalooChettan2-Regular.ttf"]
-            font_type = random.choice(font_list)
-            font = ImageFont.truetype(font_type, size=20)
-            x=random.randint(0,300)
+            # font_list = ["../_data/fonts/BalooChettan2-Bold.ttf", "../_data/fonts/BalooChettan2-ExtraBold.ttf", 
+            #              "../_data/fonts/BalooChettan2-SemiBold.ttf", "../_data/fonts/BalooChettan2-Medium.ttf", 
+            #              "../_data/fonts/BalooChettan2-Regular.ttf"]
+            # font_type = random.choice(font_list)
+            font_type = "./_data/fonts/BungeeInline-Regular.ttf"
+            font = ImageFont.truetype(font_type, size=25)
+            x=random.randint(0,40)
             y=random.randint(0,300)
             draw.text((x, y), quote, font=font, fill='white')
 
-
-        img.save(self.out_path)
-        return self.out_path
+        img_path=self.out_path+f'/{random.randint(0,10000)}.jpg'
+        img.save(img_path)
+        return img_path
