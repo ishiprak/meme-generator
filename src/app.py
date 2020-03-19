@@ -1,3 +1,5 @@
+""" Module for Web-Service based Interface """
+
 import random
 import os
 import requests

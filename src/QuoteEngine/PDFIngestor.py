@@ -1,3 +1,5 @@
+""" Ingestor Module for `PDF` file formats """
+
 from typing import List
 import subprocess
 import os
@@ -6,11 +8,21 @@ import random
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
+
 class PDFIngestor(IngestorInterface):
+    """ Ingestor Class for `PDF` file formats """
+
     allowed_extensions = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """ Ingests and parses `PDF` type files for quote extraction
+        Arguments:
+            path {str} -- the file location for the input file.
+        Returns:
+            List(QuoteModel) {List} -- List of QuoteModel objects.
+        """
+
         if not cls.can_ingest(path):
             raise Exception('Cannot Ingest Exception')
 
